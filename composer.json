@@ -6,7 +6,6 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "starmoozie/crud": "*",
         "spatie/laravel-responsecache": "^6.6",
         "staudenmeir/eloquent-json-relations": "^1.5",
         "genealabs/laravel-model-caching": "^0.11.3"
