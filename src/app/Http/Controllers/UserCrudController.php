@@ -30,9 +30,11 @@ class UserCrudController extends CrudController
      */
     public function setup()
     {
+        $label = __('dynamic_trans::label.user');
+
         CRUD::setModel(\Starmoozie\MenuPermission\app\Models\User::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . '/user');
-        CRUD::setEntityNameStrings('user', 'user');
+        CRUD::setEntityNameStrings($label, $label);
     }
 
     /**
@@ -152,18 +154,18 @@ class UserCrudController extends CrudController
         return [
             [
                 'name'    => 'name',
-                'label'   => 'Name',
+                'label'   => __('dynamic_trans::fields.name'),
                 'wrapper' => $wrapper
             ],
             [
                 'name'    => 'email',
-                'label'   => 'Email',
+                'label'   => __('dynamic_trans::fields.email'),
                 'type'    => 'email',
                 'wrapper' => $wrapper
             ],
             [
                 'name'    => 'role_id',
-                'label'   => 'Role',
+                'label'   => __('dynamic_trans::fields.role'),
                 'wrapper' => $wrapper,
             ]
         ];
@@ -176,13 +178,13 @@ class UserCrudController extends CrudController
         return [
             [
                 'name'    => 'password',
-                'label'   => 'Password',
+                'label'   => __('dynamic_trans::fields.password'),
                 'type'    => 'password',
                 'wrapper' => $wrapper
             ],
             [
                 'name'    => 'password_confirmation',
-                'label'   => 'Password Confirmation',
+                'label'   => __('dynamic_trans::fields.password_confirmation'),
                 'type'    => 'password',
                 'wrapper' => $wrapper
             ]

@@ -31,9 +31,11 @@ class MenuCrudController extends CrudController
      */
     public function setup()
     {
+        $label = __('dynamic_trans::label.menu');
+
         CRUD::setModel(\Starmoozie\MenuPermission\app\Models\Menu::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . '/menu');
-        CRUD::setEntityNameStrings('menu', 'menu');
+        CRUD::setEntityNameStrings($label, $label);
         CRUD::addClause('orderByName');
     }
 
@@ -110,21 +112,21 @@ class MenuCrudController extends CrudController
         return [
             [
                 'name'    => 'name',
-                'label'   => 'Name',
+                'label'   => __('dynamic_trans::fields.name'),
                 'wrapper' => $wrapper,
-                'tab'     => 'Details'
+                'tab'     => __('dynamic_trans::tab.detail')
             ],
             [
                 'name'    => 'url',
-                'label'   => 'URL',
+                'label'   => __('dynamic_trans::fields.url'),
                 'wrapper' => $wrapper,
-                'tab'     => 'Details',
+                'tab'     => __('dynamic_trans::tab.detail'),
             ],
             [
                 'name'    => 'parent_id',
-                'label'   => 'Parent',
+                'label'   => __('dynamic_trans::fields.parent'),
                 'wrapper' => $wrapper,
-                'tab'     => 'Details',
+                'tab'     => __('dynamic_trans::tab.detail'),
                 'options' => (fn($q) => $q->isParent()->get())
             ],
         ];
@@ -134,14 +136,14 @@ class MenuCrudController extends CrudController
     {
         return [
             [
-                'label'     => 'Permission',
+                'label'     => __('dynamic_trans::fields.permission'),
                 'type'      => 'checklist',
                 'name'      => 'permission',
                 'entity'    => 'permission',
                 'attribute' => 'name',
                 'model'     => 'Starmoozie\MenuPermission\app\Models\Permission',
                 'pivot'     => true,
-                'tab'       => 'Permissions'
+                'tab'       => __('dynamic_trans::tab.permission')
             ]
         ];
     }
@@ -151,7 +153,7 @@ class MenuCrudController extends CrudController
         $this->crud->addColumn([
             'name'  => 'permission',
             'type'  => 'relationship',
-            'label' => 'Permission',
+            'label' => __('dynamic_trans::fields.permission'),
         ])->afterColumn('parent_id');
     }
 
@@ -160,7 +162,7 @@ class MenuCrudController extends CrudController
         $this->crud->addFilter([
             'name'  => 'status',
             'type'  => 'select2',
-            'label' => 'Type'
+            'label' => __('dynamic_trans::fields.type')
         ], function () {
             return [
                 0 => "Parent",

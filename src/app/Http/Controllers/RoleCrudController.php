@@ -30,9 +30,11 @@ class RoleCrudController extends CrudController
      */
     public function setup()
     {
+        $label = __('dynamic_trans::label.role');
+
         CRUD::setModel(\Starmoozie\MenuPermission\app\Models\Role::class);
         CRUD::setRoute(config('starmoozie.base.route_prefix') . '/role');
-        CRUD::setEntityNameStrings('role', 'role');
+        CRUD::setEntityNameStrings($label, $label);
     }
 
     /**
@@ -100,7 +102,7 @@ class RoleCrudController extends CrudController
         return [
             [
                 'name'  => 'name',
-                'label' => 'Name',
+                'label' => __('dynamic_trans::fields.name'),
             ],
         ];
     }
@@ -110,7 +112,7 @@ class RoleCrudController extends CrudController
         return [
             [
                 'name'      => 'menuPermission',
-                'label'     => 'Menu',
+                'label'     => __('dynamic_trans::fields.menu'),
                 'type'      => 'menu_permission',
                 'model'     => 'Starmoozie\MenuPermission\app\Models\MenuPermission',
                 'entity'    => 'menuPermission',
