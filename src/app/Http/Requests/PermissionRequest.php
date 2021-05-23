@@ -27,13 +27,13 @@ class PermissionRequest extends FormRequest
         switch ($this->method()) {
             case 'PUT':
                 return [
-                    'name' => 'required|max:20|regex:/^[a-z A-Z]+$/|unique:permission,name,'.$this->get('id') ?? request()->route('id'),
+                    'name' => 'required|max:20|regex:/^[a-z A-Z_]+$/|unique:permission,name,'.$this->get('id') ?? request()->route('id'),
                 ];
                 break;
 
             default:
                 return [
-                    'name' => 'required|max:20|regex:/^[a-z A-Z]+$/|unique:permission,name'
+                    'name' => 'required|max:20|regex:/^[a-z A-Z_]+$/|unique:permission,name'
                 ];
                 break;
         }
