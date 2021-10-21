@@ -10,5 +10,6 @@ return [
     'email' => 'Email',
     'role' => 'Jabatan',
     'password' => 'Password',
-    'password_confirmation' => 'Konfirmasi Password'
+    'password_confirmation' => 'Konfirmasi Password',
+    'note'  => 'Catatan'
 ];

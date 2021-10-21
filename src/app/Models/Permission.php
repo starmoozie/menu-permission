@@ -25,7 +25,8 @@ class Permission extends Model
     // public $timestamps = false;
     protected $guarded = ['id'];
     protected $fillable = [
-        'name'
+        'name',
+        'note'
     ];
     // protected $hidden = [];
     // protected $dates = [];

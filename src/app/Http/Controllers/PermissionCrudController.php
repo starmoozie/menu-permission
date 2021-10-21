@@ -46,7 +46,7 @@ class PermissionCrudController extends CrudController
     protected function setupListOperation()
     {
         $this->permissionCheck();
-        CRUD::setFromDb(); // columns
+        $this->setupColumns();
         $this->numbering();
         $this->created();
     }
@@ -60,8 +60,7 @@ class PermissionCrudController extends CrudController
     {
         $this->permissionCheck();
         CRUD::setValidation(PermissionRequest::class);
-
-        CRUD::setFromDb(); // fields
+        $this->setupFields();
     }
 
     /**
@@ -90,5 +89,35 @@ class PermissionCrudController extends CrudController
             'type'         => 'relationship',
             'label'        => __('dynamic_trans::fields.menu'),
         ])->afterColumn('name');
+
+        CRUD::addColumn([
+            'name' => 'note',
+            'label' => __('dynamic_trans::fields.note')
+        ]);
+    }
+
+    private function setupColumns()
+    {
+        $this->crud->addColumns([
+            [
+                'name'  => 'name',
+                'label' => __('dynamic_trans::fields.name')
+            ],
+        ]);
+    }
+
+    private function setupFields()
+    {
+        $this->crud->addFields([
+            [
+                'name'  => 'name',
+                'label' => __('dynamic_trans::fields.name')
+            ],
+            [
+                'name'  => 'note',
+                'label' => __('dynamic_trans::fields.note'),
+                'type'  => 'textarea'
+            ],
+        ]);
     }
 }
