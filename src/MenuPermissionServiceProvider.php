@@ -7,7 +7,7 @@ use Starmoozie\MenuPermission\app\Http\Middleware\ClearCacheResponse;
 use Spatie\ResponseCache\Middlewares\CacheResponse;
 use Illuminate\Support\Str;
 use Symfony\Component\Console\Output\ConsoleOutput;
-use Illuminate\Console\Events\CommandFinished;
+use Illuminate\Console\Events\CommandStarting;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Request;
@@ -25,7 +25,7 @@ class MenuPermissionServiceProvider extends ServiceProvider
         // Seeders
         if ($this->app->runningInConsole()) {
             if ($this->isConsoleCommandContains([ 'db:seed', '--seed' ], [ '--class', 'help', '-h' ])) {
-                $this->addSeedsAfterConsoleCommandFinished();
+                $this->addSeedsAfterConsoleCommandStarting();
             }
         }
     }
@@ -91,9 +91,9 @@ class MenuPermissionServiceProvider extends ServiceProvider
     /**
      * Add seeds from the $seed_path after the current command in console finished.
      */
-    protected function addSeedsAfterConsoleCommandFinished()
+    protected function addSeedsAfterConsoleCommandStarting()
     {
-        Event::listen(CommandFinished::class, function(CommandFinished $event) {
+        Event::listen(CommandStarting::class, function(CommandStarting $event) {
             // Accept command in console only
             if ($event->output instanceof ConsoleOutput) {
                 $this->addSeedsFrom(__DIR__ . $this->seeds_path);
