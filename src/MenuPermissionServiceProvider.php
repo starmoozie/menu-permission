@@ -52,11 +52,11 @@ class MenuPermissionServiceProvider extends ServiceProvider
     private function registerMiddleware()
     {
         // To $middlewareGroups
-        $this->app->router->pushMiddlewareToGroup('web', ClearCacheResponse::class);
-        $this->app->router->pushMiddlewareToGroup('web', CacheResponse::class);
+        // $this->app->router->pushMiddlewareToGroup('web', ClearCacheResponse::class);
+        // $this->app->router->pushMiddlewareToGroup('web', CacheResponse::class);
 
         // To $routeMiddleware
-        $this->app->router->aliasMiddleware('doNotCacheResponse', \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class);
+        // $this->app->router->aliasMiddleware('doNotCacheResponse', \Spatie\ResponseCache\Middlewares\DoNotCacheResponse::class);
     }
 
     private function registerProvider()
